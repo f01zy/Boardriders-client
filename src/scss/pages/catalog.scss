@@ -1,0 +1,304 @@
+.catalog {
+
+  @media (max-width: 840px) {
+    margin-top: 120px;
+  }
+    
+  .stocks {
+    padding: 50px 30px;
+    width: 100%;
+    background: #000;
+    margin-bottom: 100px;
+
+    .links {
+      margin-bottom: 40px;
+
+      ul {
+        display: flex;
+        list-style: none;
+        width: 20%;
+        justify-content: space-between;
+
+        @media (max-width: 1100px) {
+          width: 30%;
+        }
+
+        @media (max-width: 850px) {
+          width: 40%;
+        }
+
+        @media (max-width: 650px) {
+          width: 50%;
+        }
+
+        @media (max-width: 550px) {
+          width: 60%;
+        }
+
+        @media (max-width: 450px) {
+          width: 70%;
+        }
+
+        @media (max-width: 400px) {
+          width: 90%;
+        }
+
+        li {
+          color: #fafafa;
+        }
+      }
+    }
+    
+    .cards {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      
+      .stock {
+        width: 30%;
+        height: auto;
+
+        img {
+          width: 100%;
+        }
+
+        h3 {
+          margin-top: 20px;
+          color: #fafafa;
+          font-weight: 500;
+          font-size: calc($index * 1.3);
+        }
+      }
+    }
+  }
+
+  .container {
+    padding: 0 100px;
+
+    h1 {
+      margin-bottom: 50px;
+      font-size: calc($index * 2.1);
+    }
+
+    .content {
+      display: flex;
+
+      @media (max-width: 800px) {
+        display: block;
+      }
+
+      .filters {
+        margin-right: 100px;
+
+        @media (max-width: 800px) {
+          display: none;
+        }
+
+        ul {
+          margin-bottom: 50px;
+  
+          h3 {
+            font-size: calc($index);
+            margin-bottom: 20px;
+
+            @media (max-width: 850px) {
+              font-size: calc($index * 1.4);
+            }
+          }
+  
+          .search-brand {
+            width: calc($index * 12);
+            height: calc($index * 1.9);
+            border: 1px solid #CED4D7;
+            padding: 0 15px;
+            margin-bottom: 15px;
+  
+            @media (max-width: 1000px) {
+              width: calc($index * 10);
+            }
+
+            &:focus {
+              outline: none;
+            }
+  
+            &::placeholder {
+              color: #828B8D;
+            }
+          }
+  
+          .checkbox {
+            display: flex;
+            margin-bottom: 5px;
+  
+            input {
+              &:checked ~ p {
+                color: var(--Red, #EB5757);
+              }
+            }
+  
+            p {
+              margin-left: 15px;
+              font-weight: 500;
+              font-size: calc($index * .8);
+
+              @media (max-width: 850px) {
+                font-size: calc($index * 1);
+              }
+            }
+          }
+        }
+      }
+
+      .mobile-filters {
+        width: 100%;
+        margin-bottom: 50px;
+        display: flex;
+        justify-content: center;
+        display: none;
+
+        @media (max-width: 800px) {
+          display: block;
+        }
+
+        .buttons {
+          display: flex;
+
+          button {
+            width: calc($index * 13);
+            height: calc($index * 4);
+            background: var(--f-2-f-2-f-2, #F2F2F2);
+            border: 1px solid #222;
+            margin-left: 10px;
+            font-size: calc($index);
+            font-weight: 500;
+          }
+        }
+
+        .filters-menu {
+          position: fixed;
+          width: 100%;
+          height: calc(100vh - $index * 5);
+          background: #fff;
+          top: calc($index * 5);
+          z-index: 1;
+
+          h3 {
+            display: flex;
+            justify-content: space-between;
+            background: #F2F2F2;
+            padding: 10px 0;
+            margin-bottom: 10px;
+
+            svg {
+              margin-top: 5px;
+              margin-right: 40px;
+            }
+          }
+          
+          li {
+            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+            padding: 10px 0;
+            font-weight: 500;
+
+            &:last-child {
+              border-bottom: 0;
+            }
+          }
+        }
+
+        .detail-filter {
+          position: fixed;
+          width: 100%;
+          height: calc(100vh - $index * 5);
+          background: #fff;
+          top: calc($index * 5);
+          z-index: 2;
+
+          h3 {
+            display: flex;
+            justify-content: space-between;
+            background: #F2F2F2;
+            padding: 10px 0;
+            margin-bottom: 15px;
+
+            .left {
+              svg {
+                margin-right: 20px;
+              }
+            }
+
+            .right-svg {
+              margin-top: 5px;
+              margin-right: 40px;
+            }
+          }
+
+          .content {
+            .search-brand {
+              width: 100%;
+              height: calc($index * 3.5);
+              background: #F2F2F2;
+              border: 0;
+              padding: 0 15px;
+              margin-bottom: 15px;
+  
+              &:focus {
+                outline: none;
+              }
+    
+              &::placeholder {
+                color: #828B8D;
+                font-size: calc($index * 1.3);
+              }
+            }
+
+            .checkbox {
+              display: flex;
+              margin-bottom: 15px;
+    
+              input {
+                width: calc($index * 1.5);
+
+                &:checked ~ p {
+                  color: var(--Red, #EB5757);
+                }
+              }
+    
+              p {
+                margin-left: 15px;
+                font-weight: 500;
+                font-size: calc($index * 1.5);
+              }
+            }
+          }
+        }
+      }
+
+      .products {
+        display: grid;
+        grid-template-columns: repeat(3, calc($index * 13));
+
+        @media (max-width: 1115px) {
+          grid-template-columns: repeat(2, calc($index * 13));
+        }
+
+        @media (max-width: 800px) {
+          justify-content: center;
+          grid-template-columns: repeat(2, calc($index * 13));
+        }
+
+        .card {
+          margin-bottom: 80px;
+        }
+      }
+    }
+
+    @media (max-width: 730px) {
+      padding: 0 60px;
+    }
+
+    @media (max-width: 730px) {
+      padding: 0 20px;
+    }
+  }
+}

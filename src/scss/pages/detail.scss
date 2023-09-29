@@ -1,0 +1,211 @@
+.detail {
+  width: 100%;
+
+  .container {
+    padding: 0 70px;
+
+    @media (max-width: 730px) {
+      padding: 0 60px;
+    }
+
+    @media (max-width: 730px) {
+      padding: 0 20px;
+    }
+
+    .detail-card {
+      .row {
+        display: flex;
+
+        .col {
+          &:nth-child(1) {
+            display: flex;
+            padding-right: 100px;
+
+            .left {
+              .img {
+                img {
+                  width: calc($index * 4.5);
+                  margin-bottom: 20px;
+                }
+              }
+            }
+
+            .image {
+              img {
+                width: calc($index * 28);
+              }
+            }
+          }
+
+          &:nth-child(2) {
+            p {
+              margin-bottom: 10px;
+            }
+
+            .stars {
+              display: flex;
+              line-height: calc($index * 2);
+
+              img {
+                height: calc($index * 2);
+              }
+
+              .svg {
+                margin-left: 10px;
+                margin-top: 3px;
+              }
+
+              p {
+                margin-left: 10px;
+                text-decoration: underline;
+              }
+            }
+
+            .title {
+              padding-bottom: 10px;
+              border-bottom: 1px solid #E0E0E0;
+
+              h2 {
+                margin-bottom: 10px;
+
+                &:nth-child(2) {
+                  color: var(--333333, #333);
+                }
+              }
+            }
+
+            .colors {
+              margin-top: 10px;
+
+              p {
+                font-weight: 500;
+              }
+
+              .cards {
+                img {
+                  width: calc($index * 3);
+                  padding: 10px 5px;
+                  border: 1px solid #d6c9c9;
+                }
+              }
+            }
+
+            .size {
+              margin-top: 10px;
+
+              p {
+                font-weight: 500;
+                padding-bottom: 5px;
+              }
+
+              .btns {
+                display: flex;
+
+                button {
+                  margin-right: 10px;
+                  padding: 11px 11px;
+                  background: #fff;
+                  border: 0;
+
+                  &:nth-child(1) {
+                    background: #000;
+                    border: 0;
+                    color: #fafafa;
+                  }
+                }
+              }
+            }
+
+            .buttons {
+              margin-top: 50px;
+
+              .button {
+                margin-bottom: 10px;
+
+                &:nth-child(2) {
+                  button {
+                    background: #fff;
+                    color: var(--Red, #EB5757);
+                    font-weight: 500;
+                  }
+                }
+
+                button {
+                  padding: calc($index * .8) calc($index * 4);
+                  background: var(--Red, #EB5757);
+                  border: 1px solid var(--Red, #EB5757);
+                  color: #fff;
+                  font-size: calc($index * .8);
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .bottom {
+      .description {
+        margin-top: 20px;
+        margin-bottom: 50px;
+
+        h2 {
+          margin-bottom: 20px;
+        }
+
+        p {
+          width: calc($index * 40);
+        }
+      }
+    }
+
+    .stats {
+      display: flex;
+
+      ul {
+        margin-right: 50px;
+
+        li {
+          margin-bottom: 5px;
+          font-size: calc($index * .8);
+          font-weight: 500;
+        }
+      }
+    }
+
+    .items {
+      margin-top: 50px;
+
+      .item {
+        h2 {
+          margin-top: 50px;
+          margin-bottom: 50px;
+        }
+
+        .cards {
+          margin-bottom: 40px;
+          width: 100%;
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+          justify-content: center;
+  
+          @media (max-width: 950px) {
+            grid-template-columns: repeat(3, 1fr);
+          }
+  
+          @media (max-width: 550px) {
+            grid-template-columns: repeat(2, 1fr);
+          }
+  
+          @media (max-width: 400px) {
+            grid-template-columns: repeat(2, calc($index * 12));
+  
+            div {
+              margin-bottom: 30px;
+            }
+          }
+        }
+      }
+    }
+  }
+}

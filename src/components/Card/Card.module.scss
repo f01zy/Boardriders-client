@@ -1,0 +1,39 @@
+@import "../../scss/modules/variables";
+
+.card {
+  .image {
+    margin-bottom: 20px;
+
+    img {
+      width: calc($index * 11);
+    }
+  }
+
+  .discount {
+    height: calc($index * 1.5);
+    width: calc($index * 2.5);
+    line-height: calc($index * 1.5);
+    margin-bottom: 10px;
+    background: var(--eb-5757, #EB5757);
+
+    p {
+      color: #fafafa;
+      text-align: center;
+    }
+  }
+
+  .text {
+    h4 {
+      color: #000;
+    }
+
+    p {
+      color: var(--Dark-Grey, #828B8D);
+      margin-bottom: 8px;
+    }
+
+    strong {
+      color: #000;
+    }
+  }
+}

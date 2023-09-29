@@ -1,0 +1,142 @@
+.home {
+  width: 100%;
+  height: auto;
+  
+  @media (max-width: 840px) {
+    margin-top: 120px;
+  }
+
+  .container {
+    padding: 0 100px;
+    position: relative;
+
+    @media (max-width: 730px) {
+      padding: 0 60px;
+    }
+
+    @media (max-width: 730px) {
+      padding: 0 20px;
+    }
+
+    .slider {
+      width: 100%;
+      margin-bottom: 50px;
+
+      img {
+        width: 100%;
+        background-size: cover;
+
+        @media (max-width: 730px) {
+          width: 100vw;
+        }
+      }
+    }
+
+    .images {
+      padding: 0 20px;
+      width: 100%;
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      margin-bottom: 50px;
+
+      @media (max-width: 1000px) {
+        grid-template-columns: repeat(5, 1fr);
+      }
+
+      @media (max-width: 730px) {
+        grid-template-columns: repeat(4, 1fr);
+      }
+
+      @media (max-width: 470px) {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      img {
+        opacity: .75;
+      }
+    }
+
+    .stocks {
+      display: flex;
+      justify-content: space-between;
+      position: relative;
+      margin-bottom: 100px;
+
+      @media (max-width: 730px) {
+        display: block;
+      }
+
+      img {
+        width: 98%;
+
+        @media (max-width: 730px) {
+          margin-bottom: 30px;
+
+          &:last-child {
+            margin-bottom: 0;
+          }
+        }
+      }
+    }
+
+    .cards-menu {
+      margin-bottom: 50px;
+
+      h1 {
+        text-align: center;
+        margin-bottom: 80px;
+      }
+
+      .cards {
+        margin-bottom: 60px;
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        justify-content: center;
+
+        @media (max-width: 950px) {
+          grid-template-columns: repeat(3, 1fr);
+        }
+
+        @media (max-width: 550px) {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        @media (max-width: 400px) {
+          grid-template-columns: repeat(2, calc($index * 12));
+
+          div {
+            margin-bottom: 30px;
+          }
+        }
+      }
+
+      .btn {
+        button {
+          padding: 12px 70px;
+          border: 0;
+          background: var(--Black, #000);
+          color: #fafafa;
+          font-size: calc($index * .8);
+
+          @media (max-width: 550px) {
+            font-size: calc($index * 1.1);
+          }
+        }
+      }
+    }
+
+    .stock {
+      margin-bottom: 100px;
+
+      .image {
+        margin-bottom: 30px;
+
+        img {
+          width: 100%;
+          background-size: cover;
+        }
+      }
+    }
+  }
+}

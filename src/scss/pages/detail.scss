@@ -1,12 +1,12 @@
 .detail {
   width: 100%;
 
+  @media (max-width: 840px) {
+    margin-top: 100px;
+  }
+
   .container {
     padding: 0 70px;
-
-    @media (max-width: 730px) {
-      padding: 0 60px;
-    }
 
     @media (max-width: 730px) {
       padding: 0 20px;
@@ -16,10 +16,18 @@
       .row {
         display: flex;
 
+        @media (max-width: 690px) {
+          display: block;
+        }
+
         .col {
           &:nth-child(1) {
             display: flex;
             padding-right: 100px;
+
+            @media (max-width: 690px) {
+              padding-right: 0;
+            }
 
             .left {
               .img {
@@ -28,11 +36,40 @@
                   margin-bottom: 20px;
                 }
               }
+
+              @media (max-width: 830px) {
+                display: none;
+              }
             }
 
             .image {
               img {
                 width: calc($index * 28);
+
+                @media (max-width: 970px) {
+                  width: calc($index * 20);
+                }
+
+                @media (max-width: 690px) {
+                  width: calc($index * 27);
+                  margin-left: calc(($index * 27 / 4));
+                }
+
+                @media (max-width: 500px) {
+                  margin-left: calc(($index * 27 / 6));
+                }
+
+                @media (max-width: 400px) {
+                  margin-left: calc(($index * 27 / 8));
+                }
+
+                @media (max-width: 390px) {
+                  margin-left: 0
+                }
+              }
+
+              @media (max-width: 690px) {
+                margin-bottom: 50px;
               }
             }
           }
@@ -40,6 +77,10 @@
           &:nth-child(2) {
             p {
               margin-bottom: 10px;
+
+              @media (max-width: 690px) {
+                margin-bottom: 20px;
+              }
             }
 
             .stars {
@@ -48,6 +89,10 @@
 
               img {
                 height: calc($index * 2);
+
+                @media (max-width: 500px) {
+                  height: calc($index * 3);
+                }
               }
 
               .svg {
@@ -70,6 +115,10 @@
 
                 &:nth-child(2) {
                   color: var(--333333, #333);
+
+                  @media (max-width: 690px) {
+                    color: var(--eb-5757, #EB5757);
+                  }
                 }
               }
             }
@@ -86,6 +135,12 @@
                   width: calc($index * 3);
                   padding: 10px 5px;
                   border: 1px solid #d6c9c9;
+
+                  @media (max-width: 450px) {
+                    width: calc($index * 5);
+                    padding: 10px 10px;
+                    margin-right: 20px;
+                  }
                 }
               }
             }
@@ -136,6 +191,13 @@
                   border: 1px solid var(--Red, #EB5757);
                   color: #fff;
                   font-size: calc($index * .8);
+
+                  @media (max-width: 600px) {
+                    padding: 0;
+                    width: 100%;
+                    height: calc($index * 4);
+                    font-size: calc($index * 1);
+                  }
                 }
               }
             }
@@ -169,6 +231,10 @@
           margin-bottom: 5px;
           font-size: calc($index * .8);
           font-weight: 500;
+
+          @media (max-width: 690px) {
+            font-size: calc($index * 1.2);
+          }
         }
       }
     }

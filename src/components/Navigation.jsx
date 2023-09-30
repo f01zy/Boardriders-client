@@ -1,15 +1,20 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { Link } from 'react-router-dom'
 import logo from '../assets/images/logo.png'
 import { FiMenu } from 'react-icons/fi'
 import { BiSearch } from 'react-icons/bi'
 import { AiFillStar } from 'react-icons/ai'
 import { FaShoppingCart } from 'react-icons/fa'
+import { Context } from '../main'
+import { observer } from 'mobx-react-lite'
 
 const Navigation = () => {
+  const {store} = useContext(Context)
   const [menu, setMenu] = useState(false)
   const [auth, setAuth] = useState(false)
   const [authSelect, setAuthSelect] = useState("login")
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
 
   return (
     <>
@@ -24,46 +29,44 @@ const Navigation = () => {
           </button>
           <div className="row">
               <div className="links">
-                <ul>
-                  <li onClick={e => setAuthSelect("login")}>Вход</li>
-                  <li onClick={e => setAuthSelect("register")}>Регистрация</li>
-                </ul>
+                {store.isAuth ? (
+                  <ul>
+                    <li onClick={e => store.logout()}>Выйти</li>
+                  </ul>
+                ) : (
+                  <ul>
+                    <li onClick={e => setAuthSelect("login")}>Вход</li>
+                    <li onClick={e => setAuthSelect("register")}>Регистрация</li>
+                  </ul>              
+                )}
               </div>
             <div className={authSelect == "register" ? "col dis" : "col"}>
               <h2>Вход</h2>
               <div className="input">
-                <input type="text" />
-                <p>Номер телефона или email</p>
+                <input type="text" onChange={e => setEmail(e.target.value)} value={email} placeholder='Номер телефона или email' />
               </div>
               <div className="input">
-                <input type="text" />
-                <p>Пароль</p>
+                <input type="text" onChange={e => setPassword(e.target.value)} value={password} placeholder='Пароль' />
               </div>
               <div className="checkbox">
                 <input type="checkbox" />
                 <p>Запомнить меня</p>
               </div>
-              <button className="login">Войти</button>
+              <button className="login" onClick={e => store.login(email, password)}>Войти</button>
             </div>
             <div className={authSelect == "login" ? "col dis" : "col"}>
               <h2>Регистрация</h2>
               <div className="input">
-                <input type="text" />
-                <p>Имя</p>
+                <input type="text" onChange={e => setEmail(e.target.value)} value={email} placeholder='Номер телефона или email' />
               </div>
               <div className="input">
-                <input type="text" />
-                <p>Email</p>
-              </div>
-              <div className="input">
-                <input type="text" />
-                <p>Номер телефона</p>
+                <input type="text" onChange={e => setPassword(e.target.value)} value={password} placeholder='Пароль' />
               </div>
               <div className="checkbox">
                 <input type="checkbox" />
                 <p>Запомнить меня</p>
               </div>
-              <button className="register">Зарегистрироваться</button>
+              <button className="register" onClick={e => store.register(email, password)}>Зарегистрироваться</button>
             </div>
           </div>
         </div>
@@ -175,10 +178,16 @@ const Navigation = () => {
             </div>
             <div className="auth-nav">
               <h3>Личный кабинет</h3>
-              <div className="buttons" align="center">
-                <button onClick={e => setAuth(!auth)}>Войти</button>
-                <button>Зарегистрироваться</button>
-              </div>
+              {store.isAuth ? (
+                <div className="buttons" align="center">
+                  <button onClick={e => store.logout()}>Выход</button>
+                </div>
+              ) : (
+                <div className="buttons" align="center">
+                  <button onClick={e => setAuth(!auth)}>Войти</button>
+                  <button onClick={e => setAuth(!auth)}>Зарегистрироваться</button>
+                </div>
+              )}
             </div>
             <div className="links-bottom" align="center">
               <ul>
@@ -199,4 +208,4 @@ const Navigation = () => {
   )
 }
 
-export default Navigation
+export default observer(Navigation)

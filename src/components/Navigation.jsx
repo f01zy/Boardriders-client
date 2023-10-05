@@ -15,11 +15,12 @@ const Navigation = () => {
   const [authSelect, setAuthSelect] = useState("login")
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
+  const [username, setUsername] = useState("")
 
   return (
     <>
 
-    {auth == true && (
+    {auth && (
       <div className="auth">
         <div className="form">
           <button className="exit" onClick={e => setAuth(!auth)}>
@@ -37,36 +38,45 @@ const Navigation = () => {
                   <ul>
                     <li onClick={e => setAuthSelect("login")}>Вход</li>
                     <li onClick={e => setAuthSelect("register")}>Регистрация</li>
-                  </ul>              
+                  </ul>
                 )}
               </div>
             <div className={authSelect == "register" ? "col dis" : "col"}>
               <h2>Вход</h2>
               <div className="input">
-                <input type="text" onChange={e => setEmail(e.target.value)} value={email} placeholder='Номер телефона или email' />
+                <input type="text" onChange={e => setEmail(e.target.value)} placeholder='Номер телефона или email' />
               </div>
               <div className="input">
-                <input type="text" onChange={e => setPassword(e.target.value)} value={password} placeholder='Пароль' />
+                <input type="text" onChange={e => setPassword(e.target.value)} placeholder='Пароль' />
               </div>
               <div className="checkbox">
                 <input type="checkbox" />
                 <p>Запомнить меня</p>
               </div>
-              <button className="login" onClick={e => store.login(email, password)}>Войти</button>
+              <button className="login" onClick={e => {
+                store.login(email, password)
+                setAuth(false)
+              }}>Войти</button>
             </div>
             <div className={authSelect == "login" ? "col dis" : "col"}>
               <h2>Регистрация</h2>
               <div className="input">
-                <input type="text" onChange={e => setEmail(e.target.value)} value={email} placeholder='Номер телефона или email' />
+                <input type="text" onChange={e => setUsername(e.target.value)} placeholder='Ваш username' />
               </div>
               <div className="input">
-                <input type="text" onChange={e => setPassword(e.target.value)} value={password} placeholder='Пароль' />
+                <input type="text" onChange={e => setEmail(e.target.value)} placeholder='Номер телефона или email' />
+              </div>
+              <div className="input">
+                <input type="text" onChange={e => setPassword(e.target.value)} placeholder='Пароль' />
               </div>
               <div className="checkbox">
                 <input type="checkbox" />
                 <p>Запомнить меня</p>
               </div>
-              <button className="register" onClick={e => store.register(email, password)}>Зарегистрироваться</button>
+              <button className="register" onClick={e => {
+                store.register(username, email, password)
+                setAuth(false)
+              }}>Зарегистрироваться</button>
             </div>
           </div>
         </div>
@@ -111,11 +121,20 @@ const Navigation = () => {
             </div>
 
             <div className="links">
-              <ul>
-                <li><Link onClick={e => setAuth(!auth)}>Войти</Link></li>
-                <li><Link to="/">Корзина</Link></li>
+              {store.isAuth ? (
+                <ul>
+                  <li><Link to="/profile">Личный кабинет</Link></li>
+                  <li><Link onClick={e => store.logout()}>Выйти</Link></li>
+                  <li><Link to="/">Корзина</Link></li>
                 <li><Link to="/">Поиск</Link></li>
-              </ul>
+                </ul>
+              ) : (
+                <ul>
+                  <li><Link onClick={e => setAuth(!auth)}>Войти</Link></li>
+                  <li><Link to="/">Корзина</Link></li>
+                  <li><Link to="/">Поиск</Link></li>
+                </ul>
+              )}
             </div>
           </div>
           <div className="bottom-info">
@@ -177,15 +196,21 @@ const Navigation = () => {
               </ul>
             </div>
             <div className="auth-nav">
-              <h3>Личный кабинет</h3>
               {store.isAuth ? (
                 <div className="buttons" align="center">
+                  <h3><Link to="/profile">Личный кабинет</Link></h3>
                   <button onClick={e => store.logout()}>Выход</button>
                 </div>
               ) : (
                 <div className="buttons" align="center">
-                  <button onClick={e => setAuth(!auth)}>Войти</button>
-                  <button onClick={e => setAuth(!auth)}>Зарегистрироваться</button>
+                  <button onClick={e => {
+                    setAuth(!auth)
+                    setMenu(false)
+                  }}>Войти</button>
+                  <button onClick={e => {
+                    setAuth(!auth)
+                    setMenu(false)
+                  }}>Зарегистрироваться</button>
                 </div>
               )}
             </div>

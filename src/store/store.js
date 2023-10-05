@@ -24,7 +24,6 @@ export default class Store {
       const res = await Auth.login(email, password)
       console.log(res);
       localStorage.setItem("token", res.data.accessToken)
-      console.log(localStorage.getItem("token"));
       this.setAuth(true)
       this.setUser(res.data.user)
     } catch (e) {
@@ -32,9 +31,9 @@ export default class Store {
     }
   }
 
-  async register(email, password) {
+  async register(username, email, password) {
     try {
-      const res = await Auth.register(email, password)
+      const res = await Auth.register(username, email, password)
       console.log(res);
       localStorage.setItem("token", res.data.accessToken)
       this.setAuth(true)

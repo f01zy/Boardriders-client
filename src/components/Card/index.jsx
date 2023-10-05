@@ -3,12 +3,12 @@ import styles from "./Card.module.scss"
 import card from "../../assets/images/cards/image-1.png"
 import { Link, useParams } from 'react-router-dom'
 
-const Card = () => {
+const Card = (props) => {
   const params = useParams()
 
   return (
     <>
-      <Link to={`/products/${params.product}`}>
+      <Link to={`/products/${props.title}`}>
         <div className={styles.card}>
           <div className={styles.image}>
             <img src={card} />

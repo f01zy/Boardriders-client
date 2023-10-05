@@ -5,6 +5,7 @@ import Catalog from "./pages/Catalog"
 import Detail from "./pages/Detail"
 import { useContext, useEffect } from "react"
 import { Context } from "./main"
+import Profile from "./pages/Profile"
 
 function App() {
   const {store} = useContext(Context)
@@ -22,6 +23,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/catalog" element={<Catalog />} />
             <Route path="/products/:product" element={<Detail />} />
+            <Route path="/profile" element={<Profile />} />
             <Route path="*" element={<Error />} />
         </Routes>
       </BrowserRouter>

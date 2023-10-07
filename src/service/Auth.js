@@ -12,4 +12,8 @@ export default class Auth {
   static async logout() {
     return $api.post("/logout")
   }
+
+  static async editData(user, username, email) {
+    return $api.post("/edit/data", {user, username, email})
+  }
 }

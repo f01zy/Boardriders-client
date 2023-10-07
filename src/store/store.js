@@ -66,4 +66,15 @@ export default class Store {
       console.log(e.response?.data?.message);
     }
   }
+
+  async editData(user, username, email) {
+    try {
+      const res = await Auth.editData(user, username, email)
+      console.log(res);
+      this.setUser(res.data)
+      console.log(this.user);
+    } catch (e) {
+      console.log(e.response?.data?.message);
+    }
+  }
 }

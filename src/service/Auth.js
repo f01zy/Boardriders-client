@@ -16,4 +16,12 @@ export default class Auth {
   static async editData(user, username, email) {
     return $api.post("/edit/data", {user, username, email})
   }
+  
+  static async editPassword(user, password, newPassword) {
+    return $api.post("/edit/password", {user, password, newPassword})
+  }
+
+  static async create(title, price, weight, description) {
+    return $api.post("/create", {title, price, weight, description})
+  }
 }

@@ -1,8 +1,9 @@
 @import "./modules/base";
 @import "./modules/variables";
-@import "./components/navigation.scss";
-@import "./components/footer.scss";
+@import "../components/Navigation/Navigation.scss";
+@import "../components/Footer/Footer.scss";
 @import "./pages/home.scss";
 @import "./pages/catalog.scss";
 @import "./pages/detail.scss";
 @import "./pages/profile.scss";
+@import "./pages/create.scss";

@@ -1,13 +1,15 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import Navigation from '../components/Navigation'
 import Footer from '../components/Footer'
 import Card from '../components/Card'
 import img1 from '../assets/images/catalog/rectangle-58.png'
 import img2 from '../assets/images/catalog/rectangle-65.png'
 import img3 from '../assets/images/catalog/rectangle-84.png'
+import { Context } from '../main'
 
 
 const Catalog = () => {
+  const {store} = useContext(Context)
   const [filterMenu, setFilterMenu] = useState(false)
   const [detailFilter, setDetailFilter] = useState("none")
 
@@ -328,42 +330,13 @@ const Catalog = () => {
             )}
           </div>
           <div className="products">
-            <div className="card">
-              <Card />
-            </div>
-            <div className="card">
-              <Card />
-            </div>
-            <div className="card">
-              <Card />
-            </div>
-            <div className="card">
-              <Card />
-            </div>
-            <div className="card">
-              <Card />
-            </div>
-            <div className="card">
-              <Card />
-            </div>
-            <div className="card">
-              <Card />
-            </div>
-            <div className="card">
-              <Card />
-            </div>
-            <div className="card">
-              <Card />
-            </div>
-            <div className="card">
-              <Card />
-            </div>
-            <div className="card">
-              <Card />
-            </div>
-            <div className="card">
-              <Card />
-            </div>
+            {store.cards != undefined && (
+              store.cards.map((item, index) => (
+                <div className="card" key={index}>
+                  <Card title={item.title} price={item.price} />
+                </div>
+              ))
+            )}
           </div>
         </div>
       </div>

@@ -1,11 +1,11 @@
 import React, { useContext, useState } from 'react'
 import { Link } from 'react-router-dom'
-import logo from '../assets/images/logo.png'
+import logo from '../../assets/images/logo.png'
 import { FiMenu } from 'react-icons/fi'
 import { BiSearch } from 'react-icons/bi'
 import { AiFillStar } from 'react-icons/ai'
 import { FaShoppingCart } from 'react-icons/fa'
-import { Context } from '../main'
+import { Context } from '../../main'
 import { observer } from 'mobx-react-lite'
 
 const Navigation = () => {

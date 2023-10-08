@@ -12,6 +12,9 @@ const Profile = () => {
   const [menu, setMenu] = useState("main")
   const [username, setUsername] = useState("")
   const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+  const [newPassword, setNewPassword] = useState("")
+  const [repeatPassword, setRepeatPassword] = useState("")
   const [data, setData] = useState(false)
   const [passwordMenu, setPasswordMenu] = useState(false)
   const [authSelect, setAuthSelect] = useState("data")
@@ -20,8 +23,15 @@ const Profile = () => {
     window.location.href = "/"
   }
 
-  const send = () => {
+  const editData = () => {
     store.editData(store.user.email, username, email)
+  }
+
+  const editPassword = () => {
+    if(newPassword == repeatPassword) {
+      store.editPassword(store.user.email, password, newPassword)
+      console.log(password);
+    }
   }
 
   return (
@@ -230,7 +240,7 @@ const Profile = () => {
                   <div className="input">
                     <input type="email" placeholder='Email' onChange={e => setEmail(e.target.value)} />
                   </div>
-                  <button onClick={e => send()}>Сохранить</button>
+                  <button onClick={e => editData()}>Сохранить</button>
                 </div>
               ) : (
                 <div className={authSelect == "data" ? "data" : "data dis"}>
@@ -250,15 +260,15 @@ const Profile = () => {
                 <div className="password_form">
                   <h2>Пароль</h2>
                   <div className="input">
-                    <input type="text" placeholder='Текущий пароль' />
+                    <input type="text" placeholder='Текущий пароль' onChange={e => setPassword(e.target.value)} />
                   </div>
                   <div className="input">
-                    <input type="text" placeholder='Новый пароль' />
+                    <input type="text" placeholder='Новый пароль' onChange={e => setNewPassword(e.target.value)} />
                   </div>
                   <div className="input">
-                    <input type="text" placeholder='Повторите пароль' />
+                    <input type="text" placeholder='Повторите пароль' onChange={e => setRepeatPassword(e.target.value)} />
                   </div>
-                  <button>Изменить пароль</button>
+                  <button onClick={e => editPassword()}>Изменить пароль</button>
                 </div>
               ) : (
                 <div className={authSelect == "password" ? "password" : "password dis"}>

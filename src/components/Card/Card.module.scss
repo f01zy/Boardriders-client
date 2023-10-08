@@ -1,12 +1,14 @@
 @import "../../scss/modules/variables";
 
 .card {
+  width: calc($index * 10);
+
   .image {
     margin-bottom: 20px;
-
-    img {
-      width: calc($index * 11);
-    }
+    width: calc($index * 10);
+    height: calc($index * 10);
+    background-size: cover;
+    background-repeat: no-repeat;
   }
 
   .discount {

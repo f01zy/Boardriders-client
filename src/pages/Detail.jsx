@@ -1,11 +1,16 @@
-import React from 'react'
-import card from "../assets/images/cards/image-2.png"
+import React, { useContext } from 'react'
 import logo from "../assets/images/detail/logo-detail.png"
 import Navigation from '../components/Navigation'
 import Footer from '../components/Footer'
 import Card from '../components/Card'
+import { useParams } from 'react-router-dom'
+import { Context } from '../main'
 
 const Detail = () => {
+  const {store} = useContext(Context)
+  const params = useParams()
+  const card = store.cards.filter(item => item.title == params.product)
+
   return (
     <>
       <Navigation />
@@ -15,26 +20,8 @@ const Detail = () => {
           <main className='detail-card'>
             <div className="row">
               <div className="col">
-                <div className="left">
-                  <div className="img">
-                    <img src={card} />
-                  </div>
-                  <div className="img">
-                    <img src={card} />
-                  </div>
-                  <div className="img">
-                    <img src={card} />
-                  </div>
-                  <div className="img">
-                    <img src={card} />
-                  </div>
-                  <div className="img">
-                    <img src={card} />
-                  </div>
-                </div>
-
-                <div className="image">
-                  <img src={card} />
+                <div className="image" style={{backgroundImage: `url('http://localhost:5173/src/assets/images/cards/${card[0].title}.png')`}}>
+                  
                 </div>
               </div>
               <div className="col">
@@ -61,17 +48,8 @@ const Detail = () => {
                   <p>24 отзыва</p>
                 </div>
                 <div className="title">
-                  <h2>Сноуборд GNU Asym Carbon Credit Btx<br />Multicolor</h2>
-                  <h2>59 395 ₽</h2>
-                </div>
-                <div className="colors">
-                  <p>Цвет: цветной</p>
-                  <div className="cards">
-                    <img src={card} />
-                    <img src={card} />
-                    <img src={card} />
-                    <img src={card} />
-                  </div>
+                  <h2>{card[0].title}</h2>
+                  <h2>{card[0].price} ₽</h2>
                 </div>
                 <div className="size">
                   <p>Таблица размеров</p>
@@ -99,22 +77,11 @@ const Detail = () => {
           <div className="bottom">
             <div className="description">
               <h2>Характеристики</h2>
-              <p>The Old Skool has never been lacking in attitude. It brought the dawn of the classic Vans side stripe that has developed into a status symbol of tradition and skate stature. Aside from all that personality, they have lasted as long as they have because of their ability to perform on a skateboard, and to last, and last. Though they now share the ranks with many new Vans styles with their own innovations, the Old Skools aren't going anywhere.</p>
+              <p>{card[0].description}</p>
             </div>
             <div className="stats">
               <ul>
-                <li>Вес: 540 грамм</li>
-                <li>Touring</li>
-                <li>8</li>
-                <li>Вес: 540 грамм</li>
-                <li>Вес: 540 грамм</li>
-              </ul>
-              <ul>
-                <li>Вес: 540 грамм</li>
-                <li>Touring</li>
-                <li>8</li>
-                <li>Вес: 540 грамм</li>
-                <li>Вес: 540 грамм</li>
+                <li>Вес: {card[0].weight}</li>
               </ul>
             </div>
           </div>
@@ -122,10 +89,15 @@ const Detail = () => {
             <div className="item">
               <h2>С этим товарам смотрят</h2>
               <div className="cards">
-                <Card />
-                <Card />
-                <Card />
-                <Card />
+                {store.cards != undefined && (
+                  store.cards.map((item, index) => (
+                    index <= 4 && (
+                      <div className="card" key={index}>
+                        <Card title={item.title} price={item.price} />
+                      </div>
+                    )
+                  ))
+                )}
               </div>
             </div>
           </div>

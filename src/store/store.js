@@ -6,6 +6,7 @@ import { API_URL } from '../http'
 export default class Store {
   user = {}
   isAuth = false
+  isLoaded = false
 
   constructor() {
     makeAutoObservable(this)
@@ -17,6 +18,10 @@ export default class Store {
 
   setUser(user) {
     this.user = user
+  }
+
+  setCards(cards) {
+    this.cards = cards
   }
 
   async login(email, password) {
@@ -56,6 +61,7 @@ export default class Store {
   }
 
   async checkAuth() {
+    this.isLoaded = false
     try {
       const res = await axios.get(`${API_URL}/refresh`, {withCredentials: true})
       console.log(res);
@@ -64,6 +70,21 @@ export default class Store {
       this.setUser(res.data.user)
     } catch (e) {
       console.log(e.response?.data?.message);
+    } finally {
+      this.isLoaded = true
+    }
+  }
+
+  async get() {
+    this.isLoaded = false
+    try {
+      const res = await axios.get(`${API_URL}/get`, {withCredentials: true})
+      this.setCards(res.data)
+      console.log(this.cards);
+    } catch (e) {
+      console.log(e.response?.data?.message);
+    } finally {
+      this.isLoaded = true
     }
   }
 
@@ -72,7 +93,24 @@ export default class Store {
       const res = await Auth.editData(user, username, email)
       console.log(res);
       this.setUser(res.data)
-      console.log(this.user);
+    } catch (e) {
+      console.log(e.response?.data?.message);
+    }
+  }
+
+  async editPassword(user, password, newPassword) {
+    try {
+      const res = await Auth.editPassword(user, password, newPassword)
+      console.log(res);
+    } catch (e) {
+      console.log(e.response?.data?.message);
+    }
+  }
+
+  async create(title, price, weight, description) {
+    try {
+      const res = await Auth.create(title, price, weight, description)
+      console.log(res);
     } catch (e) {
       console.log(e.response?.data?.message);
     }

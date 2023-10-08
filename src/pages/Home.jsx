@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
+import { observer } from 'mobx-react-lite'
 import Navigation from '../components/Navigation'
 import Card from '../components/Card'
 import slider from '../assets/images/home/home-image-1.png'
@@ -13,8 +14,11 @@ import image7 from "../assets/images/home/image-20.png"
 import stock1 from "../assets/images/stocks/image-1.png"
 import stock2 from "../assets/images/stocks/image-2.png"
 import Footer from '../components/Footer'
+import { Context } from '../main'
 
 const Home = () => {
+  const {store} = useContext(Context)
+
   return (
     <>
     
@@ -59,10 +63,15 @@ const Home = () => {
         <div className="cards-menu">
           <h1>Новинки</h1>
           <div className="cards">
-            <Card />
-            <Card />
-            <Card />
-            <Card />
+            {store.isLoaded && (
+              store.cards.map((item, index) => (
+                index <= 4 && (
+                  <div className="card" key={index}>
+                    <Card title={item.title} price={item.price} />
+                  </div>
+                )
+              ))
+            )}
           </div>
           <div className="btn" align="center">
             <button>Показать больше</button>
@@ -80,10 +89,15 @@ const Home = () => {
         <div className="cards-menu">
           <h1>DC Shoes популярное в коллекции</h1>
           <div className="cards">
-            <Card />
-            <Card />
-            <Card />
-            <Card />
+            {store.isLoaded && (
+              store.cards.map((item, index) => (
+                index <= 4 && (
+                  <div className="card" key={index}>
+                    <Card title={item.title} price={item.price} />
+                  </div>
+                )
+              ))
+            )}
           </div>
           <div className="btn" align="center">
             <button>Показать больше</button>
@@ -98,4 +112,4 @@ const Home = () => {
   )
 }
 
-export default Home
+export default observer(Home)
